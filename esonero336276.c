@@ -5,14 +5,14 @@
 char M[128],K[128],C[128],J[128];
 int caso1();
 int caso2();
-time_t t;   //variabile tempo per il semerandomico
+time_t t;   //variabile tempo per il seme randomico
 char caratteri_speciali[33][5]={"NUL","SOH","STX","ETX","EOT","ENQ","ACK","BEL","BS","HT","LF","VT","FF","CR","SO","SI","DLE","DC1","DC2","DC3","DC4","NAK","SYN","ETB","CAN","EM","SUB","ESC","FS","GS","RS","US","SPACE"}; //Matrice per i caratteri speciali nell'intervallo [0-32]
 int scelta,a;
 int main()
 {
   system("clear");
   printf("Inserisca una stringa M di 128 caratteri\nSe inserirà una stringa più lunga, tutti i caratteri in eccesso verranno scartati\n");
-  fgets(M,129,stdin); /* con fgets viene chiesta una stringa da tastiera e vengono presi in considerazione solo i primi 128 caratteri*/
+  fgets(M,129,stdin); // con fgets viene chiesta una stringa da tastiera e vengono presi in considerazione solo i primi TOT caratteri
     fflush(stdin);
   system("clear");
   printf("Adesso le diamo l'opportunità di scegliere tra tre strade:\n*) Digitando (0) terminerà il programma\n*) Digitando (1) le sarà chiesto di inserire da tastiera la chiave K di cifratura \n*) Digitando (2) le sarà chierata una chiave di cifratura K personale:\n");
@@ -60,7 +60,7 @@ int caso1()
       printf("La preghiamo di inserire nuovamente la chiave K [%d-128]\n",lun);
   } while(strlen(K)<lun);
   for(int i=1;i<lun;i++)
-  C[i]=M[i]^K[i];             //operazione oxr tra caratteri corrispettivi
+  C[i]=M[i]^K[i]; //operazione oxr tra caratteri corrispettivi
   C[0]=J[0]^K[0];
   printf("La stringa cifrata C è:\n");
   for(int i=0;i<lun;i++)
@@ -72,7 +72,9 @@ int caso1()
   }
   printf("\nLa chiave M era:\n");
   for(int i=0;i<lun;i++)
-  printf("%c",J[i]);
+  {
+    printf("%c",J[i]);
+  }
   printf("\nLa chiave K era:\n");
   printf("%s",K);
   return 0;
@@ -88,7 +90,7 @@ int caso2()
   srand((unsigned)time(&t));
   for(int i=0;i<lun;i++)
   {
-    a=33+rand()%94;                                      //ritorna un numero da 0 a 127
+    a=33+rand()%94;                                      //ritorna un numero da 33 a 127
     K[i]=a;
   }
   printf("\nLa chiave K è:\n");
