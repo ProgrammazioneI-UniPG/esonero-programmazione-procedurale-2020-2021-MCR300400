@@ -59,9 +59,8 @@ int caso1()
       if(strlen(K)<lun)
       printf("La preghiamo di inserire nuovamente la chiave K [%d-128]\n",lun);
   } while(strlen(K)<lun);
-  for(int i=1;i<lun;i++)
-  C[i]=M[i]^K[i]; //operazione oxr tra caratteri corrispettivi
-  C[0]=J[0]^K[0];
+  for(int i=0;i<lun;i++)
+  C[i]=J[i]^K[i]; //operazione oxr tra caratteri corrispettivi
   printf("La stringa cifrata C è:\n");
   for(int i=0;i<lun;i++)
   {
@@ -73,10 +72,12 @@ int caso1()
   printf("\nLa chiave M era:\n");
   for(int i=0;i<lun;i++)
   {
-    printf("%c",J[i]);
+    M[i]=C[i]^K[i];
+    printf("%c",M[i]);
   }
   printf("\nLa chiave K era:\n");
-  printf("%s",K);
+  for(int i=0;i<128;i++)
+  printf("%c",K[i]);
   return 0;
 }
 
@@ -102,7 +103,7 @@ int caso2()
   for(int i=0;i<lun;i++)
   {
     if(C[i]<33)
-    printf(" %s ",caratteri_speciali[(int)C[i]]);
+    printf("%s ",caratteri_speciali[(int)C[i]]);
     else
     printf("%c ",C[i]);
   }
